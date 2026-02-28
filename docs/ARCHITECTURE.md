@@ -47,38 +47,38 @@ Rationale:
 Visual memory map (address-oriented):
 
 ```text
-┌─────────────────────────────────────────────────────────────────────────────┐
+┌────────────────────────────────────────────────────────────────────────────┐
 │                         IMXRT1062 MEMORY LAYOUT                            │
-├─────────────────────────────────────────────────────────────────────────────┤
+├────────────────────────────────────────────────────────────────────────────┤
 │ FLASH (QSPI) @ 0x60000000, 8MB                                             │
-│ 0x60000000  .flash_config   (512B, FCB for ROM boot)                       │
+│ 0x60000000  .flash_config   (512B, FCB for ROM boot)                         │
 │ 0x60000400  .ivt            (Image Vector Table)                           │
 │ 0x60000420  .boot_data      (Boot Data)                                    │
 │ 0x60001000  .vectors        (runtime vector table)                         │
 │ 0x60001000+ .text/.rodata/.ARM.* (XIP code and constants)                  │
 │            load images for .fast_code and .data are also stored in FLASH   │
-│ 0x607FFFFF  end of FLASH region                                             │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ ITCM @ 0x00000000, 512KB                                                    │
+│ 0x607FFFFF  end of FLASH region                                            │
+├────────────────────────────────────────────────────────────────────────────┤
+│ ITCM @ 0x00000000, 512KB                                                   │
 │ 0x00000000  .fast_code      (runtime fast code, copied from FLASH)         │
-│ 0x0007FFFF  end of ITCM                                                     │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ DTCM @ 0x20000000, 512KB                                                    │
+│ 0x0007FFFF  end of ITCM                                                    │
+├────────────────────────────────────────────────────────────────────────────┤
+│ DTCM @ 0x20000000, 512KB                                                   │
 │ 0x20000000  .data           (initialized data, copied from FLASH)          │
 │            .bss            (zero-initialized data)                         │
 │            .sync_objects   (reserved section for sync placement)           │
-│            .heap           (configured `_heap_size`, default 64KB)         │
-│            .stack          (configured `_stack_size`, default 8KB, MSP)    │
-│ 0x2007FFFF  end of DTCM                                                     │
-├─────────────────────────────────────────────────────────────────────────────┤
-│ OCRAM2 @ 0x20200000, 512KB                                                  │
+│            .heap           (configured `_heap_size`, default 64KB)          │
+│            .stack          (configured `_stack_size`, default 8KB, MSP)     │
+│ 0x2007FFFF  end of DTCM                                                    │
+├────────────────────────────────────────────────────────────────────────────┤
+│ OCRAM2 @ 0x20200000, 512KB                                                 │
 │ 0x20200000  .task_stacks    (task stack pool, static stacks)               │
 │            .tcb_pool       (task control block pool)                       │
-│            .msg_queues     (message queue buffers)                         │
-│            .dma_descriptors/.dma_buffers (reserved for DMA evolution)      │
+│            .msg_queues     (message queue buffers)                          │
+│            .dma_descriptors/.dma_buffers (reserved for DMA evolution)       │
 │            .ocram2         (general OCRAM2 placement)                      │
-│ 0x2027FFFF  end of OCRAM2                                                   │
-└─────────────────────────────────────────────────────────────────────────────┘
+│ 0x2027FFFF  end of OCRAM2                                                  │
+└────────────────────────────────────────────────────────────────────────────┘
 ```
 
 Section location and symbol relationship summary:

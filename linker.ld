@@ -146,9 +146,7 @@ SECTIONS
         __stack_top = .;
     } > DTCM
 
-    /* =========================================================================
-     * STAGE 2+ SECTIONS (OCRAM2 - Task Management)
-     * ========================================================================= */
+    
     
     /* Task stacks pool - separate from kernel stack for isolation */
     .task_stacks (NOLOAD) : ALIGN(8)
@@ -168,9 +166,6 @@ SECTIONS
         __tcb_pool_end = .;
     } > OCRAM2
     
-    /* =========================================================================
-     * STAGE 3+ SECTIONS (IPC and Synchronization)
-     * ========================================================================= */
     
     /* Message queue buffers */
     .msg_queues (NOLOAD) : ALIGN(4)
@@ -190,9 +185,7 @@ SECTIONS
         __sync_objects_end = .;
     } > DTCM
     
-    /* =========================================================================
-     * STAGE 4+ SECTIONS (DMA and Peripherals)
-     * ========================================================================= */
+   
     
     /* DMA descriptors - must be 32-byte aligned for IMXRT DMA */
     .dma_descriptors (NOLOAD) : ALIGN(32)
